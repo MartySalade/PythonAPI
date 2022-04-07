@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "PythonAPI"
+version = "0.1.0"
+description = ""
+authors = ["MartySalade <malleinmartin@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.75.1"
+uvicorn = {extras = ["standard"], version = "^0.17.6"}
+isort = "^5.10.1"
+mypy = "^0.942"
+black = "^22.3.0"
+autoflake = "^1.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.isort]
+profile = "black"
+line_length = 100
+sections = ['FUTURE', 'STDLIB', 'THIRDPARTY', 'FIRSTPARTY', 'LOCALFOLDER']
+combine_as_imports = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
