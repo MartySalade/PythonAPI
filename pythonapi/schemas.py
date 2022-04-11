@@ -22,9 +22,13 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     pass
 
+class UserUpdate(UserBase):
+    id: int
+
 class User(UserBase):
     id: int
     orders: list[Order] = []
 
     class Config:
         orm_mode = True
+

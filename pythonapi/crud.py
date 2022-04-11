@@ -19,6 +19,26 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.refresh(db_user)
     return db_user
 
+def update_user_username(db: Session, new_user: schemas.UserUpdate):
+    db_user = db.query(models.User).filter(models.User.id == new_user.id).one_or_none()
+    if db_user is None:
+        return None
+    for key, value in vars(new_user).items():
+        setattr(db_user, key, value) if value else None
+
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
+
+def delete_user(db: Session, user_id: int):
+    db_user = db.query(models.User).filter(models.User.id == user_id).one_or_none()
+    if db_user is None:
+        return None
+    db.delete(db_user)
+    db.commit()
+    return db_user
+
 #-------------------------------------------------------------#
 
 def get_all_orders(db: Session):
