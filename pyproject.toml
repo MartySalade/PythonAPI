@@ -12,6 +12,7 @@ isort = "^5.10.1"
 mypy = "^0.942"
 black = "^22.3.0"
 autoflake = "^1.4"
+SQLAlchemy = "^1.4.35"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
