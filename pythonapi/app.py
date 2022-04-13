@@ -59,6 +59,21 @@ def read_users(db: Session = Depends(get_db)) -> Sequence[schemas.User]:
     return crud.get_all_users(db)
 
 
+@app.get(
+    "/users/{id}",
+    tags=["users"],
+    summary="Get data of a user.",
+    description="The method return the user corresponding to the id if it exists, else raise a HTTP Exception",
+)
+def read_user(id: int, db: Session = Depends(get_db)) -> Sequence[schemas.User]:
+    db_user = crud.get_user(db, id)
+    if not db_user:
+        raise HTTPException(
+            status_code=400, detail="User with id: " + str(id) + " doesn't exist"
+        )
+    return db_user
+
+
 @app.post(
     "/users/{username}",
     tags=["users"],
@@ -85,7 +100,7 @@ def update_user_username(
     if not db_user:
         raise HTTPException(
             status_code=400,
-            detail="The user with id:" + str(id) + " doesn't exists in the database",
+            detail="The user with id: " + str(id) + " doesn't exists in the database",
         )
     return crud.update_user_username(db, id, username)
 
@@ -101,7 +116,7 @@ def delete_user(user_id: int, db: Session = Depends(get_db)) -> Optional[schemas
     if not db_user:
         raise HTTPException(
             status_code=400,
-            detail="The user with id:"
+            detail="The user with id: "
             + str(user_id)
             + " doesn't exists in the database, nothing to delete",
         )
