@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session, sessionmaker
 from pythonapi.app import app, get_db
 from pythonapi.models import Base
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./tests/test.db"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
