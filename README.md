@@ -4,10 +4,7 @@ We used the fastapi framework, pytest for the tests, it contains a production an
 
 *The documentation is available with the **/docs** route*
 
-# Installation
-## Clone the repository
-```$> git clone```
-## Install dependencies
+# Install dependencies
 ```$> cd PythonAPI && poetry install```
 
 # Launch API
